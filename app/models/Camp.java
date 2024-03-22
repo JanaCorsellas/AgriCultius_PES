@@ -6,11 +6,11 @@ import javax.persistence.*;
 import play.db.jpa.*;
 @Entity
 public class Camp extends Model{
-    private String coordenades;
-    private String comarca;
-    private String cultiu;
-    private double hectarees;
-    private String historial;
+    public String coordenades;
+    public String comarca;
+    public String cultiu;
+    public double hectarees;
+    public String historial;
 
     //varios camps poden pertànyer a una comarca
     @ManyToOne
