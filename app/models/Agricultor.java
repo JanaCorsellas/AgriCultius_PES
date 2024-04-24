@@ -8,6 +8,7 @@ public class Agricultor extends Model{
     public String nom;
     public String cognom;
     public int edat;
+    public String usuari;
     public String especialitat;
     public int ncamps;
     public double hectarees;
@@ -25,10 +26,11 @@ public class Agricultor extends Model{
 
 
     //per identificar un agricultor tindrem el seu nom, cognom i comarca on treballa
-    public Agricultor (String nom, String cognom, int edat/*, Comarca ncomarca*/){
+    public Agricultor (String nom, String cognom, int edat, String usuari/*, Comarca ncomarca*/){
         this.nom = nom;
         this.cognom = cognom;
         this.edat = edat;
+        this.usuari = usuari;
         this.ncomarca = null;
     }
 

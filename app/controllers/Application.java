@@ -13,7 +13,7 @@ import javax.persistence.Query;
 public class Application extends Controller {
 
     public static void index() {
-        render();
+        renderTemplate("Application/Agricultius.html");
     }
 
     public static void AfegeixComarca(String ncomarca){
@@ -21,18 +21,24 @@ public class Application extends Controller {
         renderText("S'ha afegit correctament");
     }
 
-    public static void RegistrarAgricultor(String nom, String cognom, int edat){
-        Agricultor a = Agricultor.find("byNomAndCognomAndEdat", nom, cognom, edat).first();
+    public void Registre(){
+        renderTemplate("Application/Registre.html");
+    }
+    public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari){
+        Agricultor a = Agricultor.find("byNomAndCognomAndEdat", nom, cognom, edat, usuari).first();
         if (a == null){
-            new Agricultor(nom,cognom,edat).save();
+            new Agricultor(nom,cognom,edat,usuari).save();
         }
         else{
             renderText("Ja existeix");
         }
     }
 
-    public static void Login (String nom, String cognom, int edat){
-        Agricultor a = Agricultor.find("byNomAndCognomAndEdat", nom, cognom, edat).first();
+    public static void LoginFormulari (){
+        renderTemplate("Application/LoginFormulari.html");
+    }
+    public static void Login (String usuari){
+        Agricultor a = Agricultor.find("byNomAndCognomAndEdat", usuari).first();
         if (a == null){
             renderText ("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
         }
@@ -61,8 +67,8 @@ public class Application extends Controller {
     public static void Test(){
         Comarca c1 = new Comarca("Conca de Barberà");
         Comarca c2 = new Comarca("Garrotxa");
-        Agricultor a1 = new Agricultor ("Jana", "Corsellas", 21).save();
-        Agricultor a2 = new Agricultor("Ivan", "Garcia", 21).save();
+        Agricultor a1 = new Agricultor ("Jana", "Corsellas", 21, "janacorse").save();
+        Agricultor a2 = new Agricultor("Ivan", "Garcia", 21, "ivan2003").save();
 
         c1.AfegeixAgricultor(a1);
         c1.save();
