@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultius</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: top;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: top;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: MediumSeaGreen;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>CONREUS PER COMARQUES</h1>
+    <img src=https://blocs.xtec.cat/laiatimoneda/files/2008/11/cmapacat.gif alt="Camp" width="500" height="490">
+    <form action="/action_page.php">
+        <label for="comarques">Escull una comarca:</label>
+        <select name="comarques" id="comarques">
+            <option value="Alt Camp">Alt Camp</option>
+            <option value="Alt Empordà">Alt Empordà</option>
+            <option value="Alt Penedès">Alt Penedès</option>
+            <option value="Alt Urgell">Alt Urgell</option>
+            <option value="Alta Ribagorça">Alta Ribagorça</option>
+            <option value="Anoia">Anoia</option>
+            <option value="Aran">Aran</option>
+            <option value="Bages">Bages</option>
+            <option value="Baix Camp">Baix Camp</option>
+            <option value="Baix Ebre">Baix Ebre</option>
+            <option value="Baix Empordà">Baix Empordà</option>
+            <option value="Baix Llobregat">Baix Llobregat</option>
+            <option value="Baix Penedès">Baix Penedès</option>
+            <option value="Barcelonès">Barcelonès</option>
+            <option value="Berguedà">Berguedà</option>
+            <option value="Cerdanya">Cerdanya</option>
+            <option value="La Conca de Barberà">La Conca de Barberà</option>
+            <option value="Garraf">Garraf</option>
+            <option value="Garrigues">Garrigues</option>
+            <option value="Garrotxa">Garrotxa</option>
+            <option value="Gironès">Gironès</option>
+            <option value="Lluçanès">Lluçanès</option>
+            <option value="Maresme">Maresme</option>
+            <option value="Moianès">Moianès</option>
+            <option value="Montsià">Montsià</option>
+            <option value="Noguera">Noguera</option>
+            <option value="Osona">Osona</option>
+            <option value="Pallars Jussà">Pallars Jussà</option>
+            <option value="Pallars Sobirà">Pallars Sobirà</option>
+            <option value="Pla d'Urgell">Pla d'Urgell</option>
+            <option value="Pla de l'Estany">Pla de l'Estany</option>
+            <option value="Priorat">Priorat</option>
+            <option value="Ribera d'Ebre">Ribera d'Ebre</option>
+            <option value="Ripollès">Ripollès</option>
+            <option value="Segarra">Segarra</option>
+            <option value="Segrià">Segrià</option>
+            <option value="Selva">Selva</option>
+            <option value="Solsonès">Solsonès</option>
+            <option value="Tarragonès">Tarragonès</option>
+            <option value="Terra Alta">Terra Alta</option>
+            <option value="Urgell">Urgell</option>
+            <option value="Vallès Occidental">Vallès Occidental</option>
+            <option value="Vallès Oriental">Vallès Oriental</option>
+        </select>
+        <br><br>
+        <button id=comarcabutton type="submit" class="button">Acceptar</button>
+    </form>
+</div>
+</body>
+</html>

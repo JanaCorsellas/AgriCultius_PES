@@ -42,14 +42,14 @@
 <body>
 <div class="container">
     <h1>Iniciar sessió</h1>
-    <form action="procesar_login.php" method="POST">
+    <form action="procesar_login.php" method="GET">
         <div class="form-group">
             <label for="usuari">Usuari:</label>
             <input type="text" id="usuari" name="usuari" required>
         </div>
-
-        <button id=loginbutton type="submit" class="button">Iniciar sessió</button>
+        <!--<button id=loginbutton type="submit" class="button">Iniciar sessió</button>-->
     </form>
+    <a href="@{Inici()}" class="button">Iniciar sessió</a>
 </div>
 </body>
 </html>

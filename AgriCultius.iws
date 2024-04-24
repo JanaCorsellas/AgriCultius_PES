@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="323669a4-8f8b-4347-8d70-aea486b51f77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/Application/Agricultius.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/Application/LoginFormulari.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/Application/Registre.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/Application/Inici.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/IniciWeb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/mapa.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Inici.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgriCultius.iws" beforeDir="false" afterPath="$PROJECT_DIR$/AgriCultius.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Agricultor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Agricultor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/Application/LoginFormulari.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/LoginFormulari.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/Application/Registre.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Registre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_LoginFormulari.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_LoginFormulari.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Registre.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Registre.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Agricultor" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Agricultor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Camp" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Camp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Comarca" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Comarca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/classes/controllers/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/controllers/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/models/Agricultor.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/models/Agricultor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/models/Camp.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/models/Camp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/models/Comarca.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/models/Comarca.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +35,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2dJCQh48xHNJ9QTgdVOQeYpPOZx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true"
@@ -73,5 +75,8 @@
       <updated>1709716780511</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

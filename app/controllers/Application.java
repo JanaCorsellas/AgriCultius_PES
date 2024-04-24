@@ -16,6 +16,9 @@ public class Application extends Controller {
         renderTemplate("Application/Agricultius.html");
     }
 
+    public static void Agricultius(){
+        renderTemplate("Application/Agricultius.html");
+    }
     public static void AfegeixComarca(String ncomarca){
         new Comarca(ncomarca).save();
         renderText("S'ha afegit correctament");
@@ -25,7 +28,7 @@ public class Application extends Controller {
         renderTemplate("Application/Registre.html");
     }
     public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari){
-        Agricultor a = Agricultor.find("byNomAndCognomAndEdat", nom, cognom, edat, usuari).first();
+        Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuari", nom, cognom, edat, usuari).first();
         if (a == null){
             new Agricultor(nom,cognom,edat,usuari).save();
         }
@@ -36,6 +39,10 @@ public class Application extends Controller {
 
     public static void LoginFormulari (){
         renderTemplate("Application/LoginFormulari.html");
+    }
+
+    public static void Inici(){
+        renderTemplate("Application/Inici.html");
     }
     public static void Login (String usuari){
         Agricultor a = Agricultor.find("byNomAndCognomAndEdat", usuari).first();
