@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inici de sessió</title>
+  <title>Registre</title>
   <style>
         body {
+            background-image: url('/public/images/PORTADA2.jpg');
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -42,7 +43,7 @@
 <body>
 <div class="container">
   <h1>Registre d'agricultor</h1>
-  <form action="@{RegistrarAgricultor()}" method="POST">
+  <form id="RegistreFormulari" action="@{RegistrarAgricultor()}" method="POST">
     <div class="form-group">
       <label for="nom">Nom:</label>
       <input type="text" id="nom" name="nom" required>
@@ -55,35 +56,65 @@
 
     <div class="form-group">
       <label for="edat">Edat:</label>
-      <input type="edat" id="edat" name="edat" required>
+      <input type="text" id="edat" name="edat" required>
     </div>
 
     <div class="form-group">
       <label for="usuari">Usuari:</label>
-      <input type="usuari" id="usuari" name="usuari" required>
+      <input type="text" id="usuari" name="usuari" required>
     </div>
-
-    <!--<div class="form-group">
-      <label for="comarca">Comarca:</label>
-      <input type="comarca" id="comarca" name="comarca" required>
-    </div>-->
-
-    <button type="submit">Registrar</button>
+    <div class="form-group">
+      <label for="contrasenya">Contrasenya:</label>
+      <input type="password" id="contrasenya" name="contrasenya" required>
+    </div>
+    <select name="comarca" id="comarques">
+      <option value="Alt Camp">Alt Camp</option>
+      <option value="Alt Empordà">Alt Empordà</option>
+      <option value="Alt Penedès">Alt Penedès</option>
+      <option value="Alt Urgell">Alt Urgell</option>
+      <option value="Alta Ribagorça">Alta Ribagorça</option>
+      <option value="Anoia">Anoia</option>
+      <option value="Aran">Aran</option>
+      <option value="Bages">Bages</option>
+      <option value="Baix Camp">Baix Camp</option>
+      <option value="Baix Ebre">Baix Ebre</option>
+      <option value="Baix Empordà">Baix Empordà</option>
+      <option value="Baix Llobregat">Baix Llobregat</option>
+      <option value="Baix Penedès">Baix Penedès</option>
+      <option value="Barcelonès">Barcelonès</option>
+      <option value="Berguedà">Berguedà</option>
+      <option value="Cerdanya">Cerdanya</option>
+      <option value="La Conca de Barberà">La Conca de Barberà</option>
+      <option value="Garraf">Garraf</option>
+      <option value="Garrigues">Garrigues</option>
+      <option value="Garrotxa">Garrotxa</option>
+      <option value="Gironès">Gironès</option>
+      <option value="Lluçanès">Lluçanès</option>
+      <option value="Maresme">Maresme</option>
+      <option value="Moianès">Moianès</option>
+      <option value="Montsià">Montsià</option>
+      <option value="Noguera">Noguera</option>
+      <option value="Osona">Osona</option>
+      <option value="Pallars Jussà">Pallars Jussà</option>
+      <option value="Pallars Sobirà">Pallars Sobirà</option>
+      <option value="Pla d'Urgell">Pla d'Urgell</option>
+      <option value="Pla de l'Estany">Pla de l'Estany</option>
+      <option value="Priorat">Priorat</option>
+      <option value="Ribera d'Ebre">Ribera d'Ebre</option>
+      <option value="Ripollès">Ripollès</option>
+      <option value="Segarra">Segarra</option>
+      <option value="Segrià">Segrià</option>
+      <option value="Selva">Selva</option>
+      <option value="Solsonès">Solsonès</option>
+      <option value="Tarragonès">Tarragonès</option>
+      <option value="Terra Alta">Terra Alta</option>
+      <option value="Urgell">Urgell</option>
+      <option value="Vallès Occidental">Vallès Occidental</option>
+      <option value="Vallès Oriental">Vallès Oriental</option>
+    </select>
+    <button type="submit" class="button">Registrar</button>
   </form>
-  <p id="successMessage" class="success-message" style="display: none;">S'ha registrat correctament!</p>
-  <a href="@{Agricultius()}" class="button">Ja m'he registrat</a>
+  <!--<a href="@{Agricultius()}" class="button">Ja m'he registrat</a>-->
 </div>
-<script>
-  document.getElementById('registroForm').addEventListener('submit', function(event) {
-    // Evitar que el formulario se envíe por defecto
-    event.preventDefault();
-    // Mostrar el mensaje de éxito
-    document.getElementById('successMessage').style.display = 'block';
-    // Opcional: Restaurar el formulario después de mostrar el mensaje
-    setTimeout(function() {
-      document.getElementById('registroForm').reset();
-    }, 3000); // Restablecer después de 3 segundos (opcional)
-  });
-</script>
 </body>
 </html>

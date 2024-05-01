@@ -16,6 +16,10 @@ public class Application extends Controller {
         renderTemplate("Application/Agricultius.html");
     }
 
+    public static void Inici(){
+        renderTemplate("Application/Inici.html");
+    }
+
     public static void Agricultius(){
         renderTemplate("Application/Agricultius.html");
     }
@@ -27,32 +31,35 @@ public class Application extends Controller {
     public void Registre(){
         renderTemplate("Application/Registre.html");
     }
-    public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari){
-        Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuari", nom, cognom, edat, usuari).first();
+    public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari, String contrasenya, String comarca){
+        Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuariAndContrasenya", nom, cognom, edat, usuari, contrasenya).first();
         if (a == null){
-            new Agricultor(nom,cognom,edat,usuari).save();
+            Comarca nc = Comarca.find("byNcomarca", comarca).first();
+            //renderXml(nc);
+            new Agricultor(nom,cognom,edat,usuari,contrasenya,nc).save();
+            renderTemplate("Application/Inici.html");
         }
         else{
-            renderText("Ja existeix");
+            renderText("Aquest agricultor ja existeix");
         }
     }
 
-    public static void LoginFormulari (){
+    public void LoginFormulari (){
         renderTemplate("Application/LoginFormulari.html");
     }
 
-    public static void Inici(){
-        renderTemplate("Application/Inici.html");
-    }
-    public static void Login (String usuari){
-        Agricultor a = Agricultor.find("byNomAndCognomAndEdat", usuari).first();
+    public static void Login (String usuari, String contrasenya){
+        Agricultor a = Agricultor.find("byUsuariAndContrasenya", usuari, contrasenya).first();
         if (a == null){
             renderText ("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
         }
         else{
-            renderText("Benvingut/da a AgriCultius");
+            renderTemplate("Application/Inici.html");
         }
     }
+
+
+
 
     public static void AssignaAgricultorComarca(String nom, String cognom, int edat, String ncomarca){
         Comarca c = Comarca.find("byNcomarca", ncomarca).first();
@@ -72,15 +79,60 @@ public class Application extends Controller {
     }
 
     public static void Test(){
-        Comarca c1 = new Comarca("Conca de Barberà");
+        new Comarca("Alt Camp").save();
+        new Comarca("Alt Empordà").save();
+        new Comarca("Alt Penedès").save();
+        new Comarca("Alt Urgell").save();
+        new Comarca("Alta Ribagorça").save();
+        new Comarca("Anoia").save();
+        new Comarca("Aran").save();
+        new Comarca("Bages").save();
+        new Comarca("Baix Camp").save();
+        new Comarca("Baix Ebre").save();
+        new Comarca("Baix Empordà").save();
+        new Comarca("Baix Llobregat").save();
+        new Comarca("Baix Penedès").save();
+        new Comarca("Barcelonès").save();
+        new Comarca("Berguedà").save();
+        new Comarca("Cerdanya").save();
+        new Comarca("La Conca de Barberà").save();
+        new Comarca("Garraf").save();
+        new Comarca("Garrigues").save();
+        new Comarca("Garrotxa").save();
+        new Comarca("Gironès").save();
+        new Comarca("Lluçanès").save();
+        new Comarca("Maresme").save();
+        new Comarca("Moianès").save();
+        new Comarca("Montsià").save();
+        new Comarca("Noguera").save();
+        new Comarca("Osona").save();
+        new Comarca("Pallars Jussà").save();
+        new Comarca("Pallars Sobirà").save();
+        new Comarca("Pla d'Urgell").save();
+        new Comarca("Pla de l'Estany").save();
+        new Comarca("Priorat").save();
+        new Comarca("Ribera d'Ebre").save();
+        new Comarca("Ripollès").save();
+        new Comarca("Segarra").save();
+        new Comarca("Segrià").save();
+        new Comarca("Selva").save();
+        new Comarca("Solsonès").save();
+        new Comarca("Tarragonès").save();
+        new Comarca("Terra Alta").save();
+        new Comarca("Urgell").save();
+        new Comarca("Vallès Occidental").save();
+        new Comarca("Vallès Oriental").save();
+        /*Comarca c1 = new Comarca("La Conca de Barberà");
+        c1.save();
         Comarca c2 = new Comarca("Garrotxa");
-        Agricultor a1 = new Agricultor ("Jana", "Corsellas", 21, "janacorse").save();
-        Agricultor a2 = new Agricultor("Ivan", "Garcia", 21, "ivan2003").save();
+        c2.save();
+        Agricultor a1 = new Agricultor ("Jana", "Corsellas", 21, "janacorse", "1234", c1).save();
+        Agricultor a2 = new Agricultor("Ivan", "Garcia", 21, "ivan2003", "1234", c2).save();
 
         c1.AfegeixAgricultor(a1);
         c1.save();
         c2.AfegeixAgricultor(a2);
-        c2.save();
+        c2.save();*/
     }
 
     //Servei que llista les comarques que tenen mínim x Agricultors
