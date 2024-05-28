@@ -4,6 +4,10 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /consultarComarques           Application.consultarComarques
+GET     /comarquesPage          Application.showComarquesPage
+GET     /editProfile        Application.editProfile
+POST    /updateProfile      Application.updateProfile
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -13,3 +17,4 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+

@@ -23,9 +23,16 @@ public class Application extends Controller {
     public static void Agricultius(){
         renderTemplate("Application/Agricultius.html");
     }
-    public static void AfegeixComarca(String ncomarca){
-        new Comarca(ncomarca).save();
+    public static void AfegeixComarca(String ncomarca, int numerocamps){
+        new Comarca(ncomarca, numerocamps).save();
         renderText("S'ha afegit correctament");
+    }
+    public static void consultarComarques() {
+        List<Comarca> comarques = Comarca.findAll();
+        renderTemplate("Application/Inici.html");
+    }
+    public static void Principal(){
+        renderTemplate("Application/Principal.html");
     }
 
     public void Registre(){
@@ -37,14 +44,19 @@ public class Application extends Controller {
             Comarca nc = Comarca.find("byNcomarca", comarca).first();
             //renderXml(nc);
             new Agricultor(nom,cognom,edat,usuari,contrasenya,nc).save();
-            renderTemplate("Application/Inici.html");
+            session.put("usuari", usuari);
+            session.put("nom", nom);
+            session.put("cognom", cognom);
+            session.put("edat", edat);
+            session.put("comarca", comarca);
+            renderTemplate("Application/Agricultius.html");
         }
         else{
             renderText("Aquest agricultor ja existeix");
         }
     }
 
-    public void LoginFormulari (){
+    public static void LoginFormulari (){
         renderTemplate("Application/LoginFormulari.html");
     }
 
@@ -54,11 +66,67 @@ public class Application extends Controller {
             renderText ("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
         }
         else{
-            renderTemplate("Application/Inici.html");
+            session.put("usuari", usuari);
+            session.put("nom", a.nom); // Asegúrate de tener los campos nom y cognom en la clase Agricultor
+            session.put("cognom", a.cognom);
+            session.put("edat", a.edat);
+            //session.put("comarca", a.comarca.ncomarca); // Asegúrate de tener el campo ncomarca en la clase Comarca
+            renderTemplate("/Application/Principal.html");
         }
     }
 
+    public static void logout() {
+        session.clear(); // Limpiar la sesión
+        Application.Agricultius(); // Redirigir a la página de inicio
+    }
 
+    public void Convidat(){
+        renderTemplate("Application/Inici.html");
+    }
+
+    public static void editProfile() {
+        String usuari = session.get("usuari");
+        if (usuari == null) {
+            flash.error("Cal iniciar sessió per editar el perfil.");
+            Application.LoginFormulari();
+        }
+        List<Comarca> comarques = Comarca.findAll();
+        render(comarques);
+    }
+    public static void updateProfile(String nom, String cognom, int edat, String usuari, Long comarcaId) {
+        String currentUsuari = session.get("usuari");
+        if (currentUsuari == null) {
+            flash.error("Cal iniciar sessió per editar el perfil.");
+            Application.LoginFormulari();
+        }
+
+        Agricultor agricultor = Agricultor.find("byUsuari", currentUsuari).first();
+        if (agricultor != null) {
+            agricultor.nom = nom;
+            agricultor.cognom = cognom;
+            agricultor.edat = edat;
+            agricultor.usuari = usuari;
+
+            Comarca novaComarca = Comarca.findById(comarcaId);
+            if (novaComarca!=null){
+                agricultor.ncomarca = novaComarca;
+            }
+            //agricultor.ncomarca = Comarca.find("byNcomarca", ncomarca).first();
+            agricultor.save();
+
+            session.put("usuari", usuari);
+            session.put("nom", nom);
+            session.put("cognom", cognom);
+            session.put("edat", edat);
+            session.put("comarca", novaComarca.ncomarca);
+
+            flash.success("Perfil actualitzat correctament.");
+            Application.Principal();
+        } else {
+            flash.error("Error en actualitzar el perfil.");
+            editProfile();
+        }
+    }
 
 
     public static void AssignaAgricultorComarca(String nom, String cognom, int edat, String ncomarca){
@@ -79,49 +147,49 @@ public class Application extends Controller {
     }
 
     public static void Test(){
-        new Comarca("Alt Camp").save();
-        new Comarca("Alt Empordà").save();
-        new Comarca("Alt Penedès").save();
-        new Comarca("Alt Urgell").save();
-        new Comarca("Alta Ribagorça").save();
-        new Comarca("Anoia").save();
-        new Comarca("Aran").save();
-        new Comarca("Bages").save();
-        new Comarca("Baix Camp").save();
-        new Comarca("Baix Ebre").save();
-        new Comarca("Baix Empordà").save();
-        new Comarca("Baix Llobregat").save();
-        new Comarca("Baix Penedès").save();
-        new Comarca("Barcelonès").save();
-        new Comarca("Berguedà").save();
-        new Comarca("Cerdanya").save();
-        new Comarca("La Conca de Barberà").save();
-        new Comarca("Garraf").save();
-        new Comarca("Garrigues").save();
-        new Comarca("Garrotxa").save();
-        new Comarca("Gironès").save();
-        new Comarca("Lluçanès").save();
-        new Comarca("Maresme").save();
-        new Comarca("Moianès").save();
-        new Comarca("Montsià").save();
-        new Comarca("Noguera").save();
-        new Comarca("Osona").save();
-        new Comarca("Pallars Jussà").save();
-        new Comarca("Pallars Sobirà").save();
-        new Comarca("Pla d'Urgell").save();
-        new Comarca("Pla de l'Estany").save();
-        new Comarca("Priorat").save();
-        new Comarca("Ribera d'Ebre").save();
-        new Comarca("Ripollès").save();
-        new Comarca("Segarra").save();
-        new Comarca("Segrià").save();
-        new Comarca("Selva").save();
-        new Comarca("Solsonès").save();
-        new Comarca("Tarragonès").save();
-        new Comarca("Terra Alta").save();
-        new Comarca("Urgell").save();
-        new Comarca("Vallès Occidental").save();
-        new Comarca("Vallès Oriental").save();
+        new Comarca("Alt Camp", 3580).save();
+        new Comarca("Alt Empordà", 28206).save();
+        new Comarca("Alt Penedès", 1806).save();
+        new Comarca("Alt Urgell", 5808).save();
+        new Comarca("Alta Ribagorça", 299).save();
+        new Comarca("Anoia", 23375).save();
+        new Comarca("Aran", 1140).save();
+        new Comarca("Bages", 21323).save();
+        new Comarca("Baix Camp", 2177).save();
+        new Comarca("Baix Ebre", 10003).save();
+        new Comarca("Baix Empordà", 18241).save();
+        new Comarca("Baix Llobregat", 1925).save();
+        new Comarca("Baix Penedès", 751).save();
+        new Comarca("Barcelonès", 31).save();
+        new Comarca("Berguedà", 12866).save();
+        new Comarca("Cerdanya", 3528).save();
+        new Comarca("La Conca de Barberà", 16713).save();
+        new Comarca("Garraf", 381).save();
+        new Comarca("Garrigues", 8963).save();
+        new Comarca("Garrotxa", 7325).save();
+        new Comarca("Gironès", 12282).save();
+        new Comarca("Lluçanès", 0).save();
+        new Comarca("Maresme", 2393).save();
+        new Comarca("Moianès", 5110).save();
+        new Comarca("Montsià", 13203).save();
+        new Comarca("Noguera", 57760).save();
+        new Comarca("Osona", 25572).save();
+        new Comarca("Pallars Jussà", 13760).save();
+        new Comarca("Pallars Sobirà", 1246).save();
+        new Comarca("Pla d'Urgell", 19910).save();
+        new Comarca("Pla de l'Estany", 8594).save();
+        new Comarca("Priorat", 328).save();
+        new Comarca("Ribera d'Ebre", 568).save();
+        new Comarca("Ripollès", 1740).save();
+        new Comarca("Segarra", 42721).save();
+        new Comarca("Segrià", 41481).save();
+        new Comarca("Selva", 8817).save();
+        new Comarca("Solsonès", 18811).save();
+        new Comarca("Tarragonès", 1232).save();
+        new Comarca("Terra Alta", 1019).save();
+        new Comarca("Urgell", 31229).save();
+        new Comarca("Vallès Occidental", 4323).save();
+        new Comarca("Vallès Oriental", 8118).save();
         /*Comarca c1 = new Comarca("La Conca de Barberà");
         c1.save();
         Comarca c2 = new Comarca("Garrotxa");
@@ -133,6 +201,15 @@ public class Application extends Controller {
         c1.save();
         c2.AfegeixAgricultor(a2);
         c2.save();*/
+    }
+
+    public static void showComarquesPage() {
+        List<Comarca> comarques = Comarca.findAll();
+        if (comarques.isEmpty()) {
+            renderText("No comarques found");
+        } else {
+            renderTemplate("/Application/Inici.html");
+        }
     }
 
     //Servei que llista les comarques que tenen mínim x Agricultors

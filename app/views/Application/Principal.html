@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Principal</title>
+</head>
+<style>
+body {
+    background-image: url('https://images.pexels.com/photos/5531189/pexels-photo-5531189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover; /* Cubre toda el área del contenedor */
+    background-repeat: no-repeat; /* No repite la imagen */
+    background-attachment: fixed; /* Fija la imagen de fondo */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+
+.btn {
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde la derecha */
+    display: inline-block;
+
+    cursor: pointer;
+    border: solid #000000;
+    border-radius: 15px;
+    background-color: #ffd700;
+    color: #000000;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #000000; /* Color de fondo cuando el ratón está sobre el botón */
+    color: #ffffff; /* Cambia el color del texto a blanco para mejorar la legibilidad */
+}
+
+.btn:active {
+  background-color: #333333; /* Color de fondo cuando se hace clic en el botón */
+  color: #ffffff; /* Cambia el color del texto a blanco para mejorar la legibilidad */
+
+}
+
+.container {
+display: flex;
+width: 100%;
+justify-content: left;
+align-items: center;
+}
+
+.profile {
+background-color: #f0f0f0;
+padding: 20px;
+border-radius: 10px;
+margin-top: 50px;
+width: 450px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+margin-bottom: 20px;
+}
+
+.user-info h2 {
+margin-top: 0;
+font-family: Arial, sans-serif; /* Utiliza la misma fuente que otros elementos */
+font-weight: bold; /* Utiliza la misma negrita que otros elementos */
+}
+
+.user-info p {
+margin-bottom: 5px;
+}
+
+
+#nomusuari {
+font-family: Arial, sans-serif; /* Utiliza la misma fuente que otros elementos */
+font-size: 30px; /* Utiliza el mismo tamaño de fuente que otros elementos */
+font-weight: bold; /* Utiliza la misma negrita que otros elementos */
+}
+</style>
+<body>
+<div class="container">
+  <div class="profile">
+    <div class="user-info">
+      <h2 style="font-size: 25px;"><strong>HOLA, </strong><span id="usuari">${session.get("usuari")}</span><strong>!</strong></h2>
+      <br>
+      <p>Dades del perfil:</p>
+      <p style="font-size: 16px;"><strong>Nom: </strong><span id="nom">${session.get("nom")}</span></p>
+      <p style="font-size: 16px;"><strong>Cognom: </strong><span id="cognom">${session.get("cognom")}</span></p>
+      <p style="font-size: 16px;"><strong>Edat: </strong><span id="edat">${session.get("edat")}</span></p>
+      <p style="font-size: 16px;"><strong>Comarca: </strong><span id="comarca">${session.get("comarca")}</span></p>
+    </div>
+    <form action="@{Application.editProfile()}" method="get">
+      <button type="submit" style="font-size: 20px; margin: 10px;">Editar Perfil</button>
+    </form>
+    <form action="@{Application.logout}" method="post">
+      <button type="submit" style="font-size: 20px; margin: 10px;">Tancar sessió</button>
+    </form>
+  </div>
+
+  <form action="@{Application.consultarComarques()}" method="get">
+    <button type="submit" class="btn" style="position: absolute; font-size: 30px; margin: 50px;">CONSULTAR COMARQUES</button>
+  </form>
+
+</div>
+<script>
+
+
+</script>
+</body>
+</html>

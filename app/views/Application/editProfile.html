@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+  <h1>Editar Perfil</h1>
+  <form action="@{Application.updateProfile()}" method="POST">
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" value="${session.nom}" required>
+    <br><br>
+    <label for="cognom">Cognom:</label>
+    <input type="text" id="cognom" name="cognom" value="${session.cognom}" required>
+    <br><br>
+    <label for="edat">Edat:</label>
+    <input type="text" id="edat" name="edat" value="${session.edat}" required>
+    <br><br>
+    <label for="usuari">Usuari:</label>
+    <input type="text" id="usuari" name="usuari" value="${session.usuari}" required>
+    <br><br>
+    <label for="comarca">Comarca:</label>
+    <select name="comarcaId" id="comarca">
+      #{list comarques, as:'comarca'}
+      <option value="${comarca.id}">${comarca.ncomarca}</option>
+      #{/list}
+    </select>
+    <br><br>
+    <button type="submit">Guardar canvis</button>
+  </form>
+</div>
+</body>
+</html>

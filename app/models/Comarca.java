@@ -7,6 +7,7 @@ import play.db.jpa.*;
 public class Comarca extends Model{
     public String ncomarca;
     public String cultiuPrincipal;
+    public int numerocamps;
 
 
     //una comarca tindà una llista de camps
@@ -19,8 +20,9 @@ public class Comarca extends Model{
     public List<Agricultor> llistaagricultor = new ArrayList <Agricultor>();
 
 
-    public Comarca (String ncomarca){
+    public Comarca (String ncomarca, int numerocamps){
         this.ncomarca = ncomarca;
+        this.numerocamps = numerocamps;
     }
 
     public void AfegeixAgricultor(Agricultor a){

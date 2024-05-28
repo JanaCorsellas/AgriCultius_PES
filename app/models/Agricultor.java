@@ -42,5 +42,9 @@ public class Agricultor extends Model{
             this.save();
         }
     }
+
+    public void setComarca(Comarca c1) {
+        this.ncomarca = c1;
+    }
 }
 
