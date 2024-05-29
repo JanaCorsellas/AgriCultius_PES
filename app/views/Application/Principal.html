@@ -20,7 +20,6 @@ body {
     bottom: 20px; /* Distancia desde la parte inferior */
     right: 20px; /* Distancia desde la derecha */
     display: inline-block;
-
     cursor: pointer;
     border: solid #000000;
     border-radius: 15px;
@@ -77,6 +76,7 @@ font-family: Arial, sans-serif; /* Utiliza la misma fuente que otros elementos *
 font-size: 30px; /* Utiliza el mismo tamaño de fuente que otros elementos */
 font-weight: bold; /* Utiliza la misma negrita que otros elementos */
 }
+
 </style>
 <body>
 <div class="container">
@@ -99,12 +99,33 @@ font-weight: bold; /* Utiliza la misma negrita que otros elementos */
   </div>
 
   <form action="@{Application.consultarComarques()}" method="get">
-    <button type="submit" class="btn" style="position: absolute; font-size: 30px; margin: 50px;">CONSULTAR COMARQUES</button>
+    <button type="submit" class="btn" style="position: absolute; font-size: 30px; margin: 50px;">Consultar comarques</button>
   </form>
 
+  <div style="position: right; margin: 150px;">
+    <label for="ncamps" style="font-size: 30px;">Indiqui quants camps tens en aquesta comarca</label>
+    <br>
+    <label for="ncamps" style="font-size: 20px;">(Recorda actualitzar el número cada cop que compris o venguis un camp)</label>
+    <br>
+    <br>
+    <input type="number" id="ncamps" name="ncamps" min="0">
+    <button type="button" onclick="ocuparCamps()">Ocupar camps</button>
+  </div>
 </div>
 <script>
+  function ocuparCamps() {
+        var ncamps = document.getElementById("ncamps").value;
+        var comarca = document.getElementById("comarca").innerText;
 
+        fetch('@{Application.ocuparCamps()}' + "?ncomarca=" + encodeURIComponent(comarca) + "&ncamps=" + encodeURIComponent(ncamps), {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => console.error('Error:', error));
+    }
 
 </script>
 </body>

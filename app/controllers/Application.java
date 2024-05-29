@@ -17,6 +17,8 @@ public class Application extends Controller {
     }
 
     public static void Inici(){
+        List<Comarca> c = Comarca.findAll();
+        renderArgs.put("comarques", c);
         renderTemplate("Application/Inici.html");
     }
 
@@ -28,7 +30,8 @@ public class Application extends Controller {
         renderText("S'ha afegit correctament");
     }
     public static void consultarComarques() {
-        List<Comarca> comarques = Comarca.findAll();
+        List<Comarca> c = Comarca.findAll();
+        renderArgs.put("comarques", c);
         renderTemplate("Application/Inici.html");
     }
     public static void Principal(){
@@ -70,7 +73,7 @@ public class Application extends Controller {
             session.put("nom", a.nom); // Asegúrate de tener los campos nom y cognom en la clase Agricultor
             session.put("cognom", a.cognom);
             session.put("edat", a.edat);
-            //session.put("comarca", a.comarca.ncomarca); // Asegúrate de tener el campo ncomarca en la clase Comarca
+            session.put("comarca", a.ncomarca.ncomarca);
             renderTemplate("/Application/Principal.html");
         }
     }
@@ -128,6 +131,68 @@ public class Application extends Controller {
         }
     }
 
+    public static void ocuparCamps(String ncomarca, int ncamps) {
+        Comarca comarca = Comarca.find("byNcomarca", ncomarca).first();
+        if (comarca != null) {
+            long totalCamps = comarca.numerocamps; // Número total de campos en la comarca
+            long ocupacioActual = calcularOcupacioCamps(comarca); // Ocupación actual de campos en la comarca
+
+            if (ocupacioActual + ncamps > totalCamps) {
+                // Si la ocupación total después de agregar los nuevos campos excede el total de campos disponibles
+                renderJSON("{\"message\": \"Error: No es pot ocupar més camps dels disponibles (" + totalCamps + ") en la comarca " + ncomarca + "\"}");
+                return;
+            }
+
+            Agricultor agricultor = Agricultor.find("byUsuariAndNcomarca", session.get("usuari"), comarca).first();
+            if (agricultor != null) {
+                agricultor.ncamps = ncamps;
+                agricultor.save();
+                renderJSON("{\"message\": \"S'han ocupat " + ncamps + " camps a la comarca " + ncomarca + "\"}");
+            } else {
+                renderJSON("{\"message\": \"Agricultor no trobat a la comarca\"}");
+            }
+        } else {
+            renderJSON("{\"message\": \"Comarca no trobada\"}");
+        }
+    }
+
+    public static void getComarcaDetails(String ncomarca) {
+        Comarca comarca = Comarca.find("byNcomarca", ncomarca).first();
+        if (comarca != null) {
+            long numAgricultors = Agricultor.count("byNcomarca", comarca);
+            long numCamps = comarca.numerocamps;
+            //long ocupacioCamps = calcularOcupacioCamps(comarca);
+
+            System.out.println("Comarca: " + ncomarca);
+            System.out.println("Num Agricultors: " + numAgricultors);
+            System.out.println("Num Camps: " + numCamps);
+            //System.out.println("Ocupacio Camps: " + ocupacioCamps);
+
+            renderJSON(new ComarcaDetails(ncomarca, numAgricultors, numCamps));
+        } else {
+            notFound("Comarca not found");
+        }
+    }
+
+    public static class ComarcaDetails {
+        public String ncomarca;
+        public long numAgricultors;
+        public long numCamps;
+        public long ocupacioCamps;
+
+        public ComarcaDetails(String ncomarca, long numAgricultors, long numCamps) {
+            this.ncomarca = ncomarca;
+            this.numAgricultors = numAgricultors;
+            this.numCamps = numCamps;
+            //this.ocupacioCamps = ocupacioCamps;
+        }
+    }
+
+    public static long calcularOcupacioCamps(Comarca comarca) {
+        Long ocupacioCamps = Agricultor.find("select sum(ncamps) from Agricultor where ncomarca = ?", comarca).first();
+        System.out.println("Ocupacio Camps calculat: " + ocupacioCamps); // Agrega un mensaje de depuración
+        return ocupacioCamps != null ? ocupacioCamps : 0;
+    }
 
     public static void AssignaAgricultorComarca(String nom, String cognom, int edat, String ncomarca){
         Comarca c = Comarca.find("byNcomarca", ncomarca).first();
@@ -144,63 +209,6 @@ public class Application extends Controller {
             renderText("Error, Comarca no existeix");
         }
         renderText("S'ha completat correctament");
-    }
-
-    public static void Test(){
-        new Comarca("Alt Camp", 3580).save();
-        new Comarca("Alt Empordà", 28206).save();
-        new Comarca("Alt Penedès", 1806).save();
-        new Comarca("Alt Urgell", 5808).save();
-        new Comarca("Alta Ribagorça", 299).save();
-        new Comarca("Anoia", 23375).save();
-        new Comarca("Aran", 1140).save();
-        new Comarca("Bages", 21323).save();
-        new Comarca("Baix Camp", 2177).save();
-        new Comarca("Baix Ebre", 10003).save();
-        new Comarca("Baix Empordà", 18241).save();
-        new Comarca("Baix Llobregat", 1925).save();
-        new Comarca("Baix Penedès", 751).save();
-        new Comarca("Barcelonès", 31).save();
-        new Comarca("Berguedà", 12866).save();
-        new Comarca("Cerdanya", 3528).save();
-        new Comarca("La Conca de Barberà", 16713).save();
-        new Comarca("Garraf", 381).save();
-        new Comarca("Garrigues", 8963).save();
-        new Comarca("Garrotxa", 7325).save();
-        new Comarca("Gironès", 12282).save();
-        new Comarca("Lluçanès", 0).save();
-        new Comarca("Maresme", 2393).save();
-        new Comarca("Moianès", 5110).save();
-        new Comarca("Montsià", 13203).save();
-        new Comarca("Noguera", 57760).save();
-        new Comarca("Osona", 25572).save();
-        new Comarca("Pallars Jussà", 13760).save();
-        new Comarca("Pallars Sobirà", 1246).save();
-        new Comarca("Pla d'Urgell", 19910).save();
-        new Comarca("Pla de l'Estany", 8594).save();
-        new Comarca("Priorat", 328).save();
-        new Comarca("Ribera d'Ebre", 568).save();
-        new Comarca("Ripollès", 1740).save();
-        new Comarca("Segarra", 42721).save();
-        new Comarca("Segrià", 41481).save();
-        new Comarca("Selva", 8817).save();
-        new Comarca("Solsonès", 18811).save();
-        new Comarca("Tarragonès", 1232).save();
-        new Comarca("Terra Alta", 1019).save();
-        new Comarca("Urgell", 31229).save();
-        new Comarca("Vallès Occidental", 4323).save();
-        new Comarca("Vallès Oriental", 8118).save();
-        /*Comarca c1 = new Comarca("La Conca de Barberà");
-        c1.save();
-        Comarca c2 = new Comarca("Garrotxa");
-        c2.save();
-        Agricultor a1 = new Agricultor ("Jana", "Corsellas", 21, "janacorse", "1234", c1).save();
-        Agricultor a2 = new Agricultor("Ivan", "Garcia", 21, "ivan2003", "1234", c2).save();
-
-        c1.AfegeixAgricultor(a1);
-        c1.save();
-        c2.AfegeixAgricultor(a2);
-        c2.save();*/
     }
 
     public static void showComarquesPage() {

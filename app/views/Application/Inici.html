@@ -59,16 +59,31 @@
 <div class="container">
     <h1>CONREUS PER COMARQUES</h1>
     <img src=https://blocs.xtec.cat/laiatimoneda/files/2008/11/cmapacat.gif alt="Camp" width="500" height="490">
-    <form action="@{Application.consultarComarques()}">
+    <!--<form action="@{Application.consultarComarques()}">
         <label for="comarca">Escull una comarca:</label>
-        <select name="comarca" id="comarca">
+        <select id="comarca" name="comarca">
             #{list items:comarques, as:'comarca'}
-            <option value="${comarca.ncomarca}" ${comarca.ncomarca == session.comarca ? 'selected' : ''}>${comarca.ncomarca}</option>
+                <option value="${comarca.ncomarca}">${comarca.ncomarca}</option>
             #{/list}
         </select>
         <br><br>
+        <input type="submit" value="Submit">
         <button id="comarcabutton" type="button" class="button" onclick="actualizarComarca()">Acceptar</button>
-    </form>
+    </form>-->
+    <br>
+    <br>
+    <label for="comarca">Escull una comarca:</label>
+    <select id="comarca" name="comarca">
+        #{list items:comarques, as:'comarca'}
+        <option value="${comarca.ncomarca}">${comarca.ncomarca}</option>
+        #{/list}
+    </select>
+    <br><br>
+    <button onclick="actualizarComarca()">Mostrar</button>
+    <!--<p>Carrega dades de la comarca
+        <input type="checkbox" onclick="actualizarComarca()" id="checkcomarca">
+    </p>-->
+    <!--<button id="comarcabutton" type="button" class="button" onclick="actualizarComarca()">Acceptar</button>-->
 </div>
 </div>
 <table>
@@ -83,10 +98,25 @@
 </table>
 </body>
 <script>
-        function actualizarComarca() {
-            var select = document.getElementById("comarques");
-            var comarcaSeleccionada = select.options[select.selectedIndex].text;
-            document.getElementById("comarcaSeleccionada").innerText = comarcaSeleccionada;
-        }
+    function actualizarComarca() {
+        var select = document.getElementById("comarca");
+        var seleccio = select.options[select.selectedIndex].value;
+
+        fetch('/getComarcaDetails?ncomarca=' + encodeURIComponent(seleccio))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("comarcaSeleccionada").innerText = data.ncomarca;
+                document.getElementById("numAgricultors").innerText = data.numAgricultors;
+                document.getElementById("numCamps").innerText = data.numCamps;
+                document.getElementById("ocupacioCamps").innerText = data.ocupacioCamps; // Asegúrate de que este campo existe
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
 </script>
 </html>

@@ -8,6 +8,8 @@ GET     /consultarComarques           Application.consultarComarques
 GET     /comarquesPage          Application.showComarquesPage
 GET     /editProfile        Application.editProfile
 POST    /updateProfile      Application.updateProfile
+GET     /getComarcaDetails  Application.getComarcaDetails
+POST    /ocuparCamps    Application.ocuparCamps
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
