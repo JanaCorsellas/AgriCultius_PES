@@ -10,11 +10,6 @@ public class Comarca extends Model{
     public int numerocamps;
 
 
-    //una comarca tindà una llista de camps
-    @OneToMany (mappedBy="ncomarca")
-    public List<Camp> camp = new ArrayList <Camp>();
-
-
     //una comarca tindrà una llista d'agricultors
     @OneToMany (mappedBy="ncomarca")
     public List<Agricultor> llistaagricultor = new ArrayList <Agricultor>();

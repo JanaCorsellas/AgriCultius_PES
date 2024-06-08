@@ -45,7 +45,6 @@ public class Application extends Controller {
         Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuariAndContrasenya", nom, cognom, edat, usuari, contrasenya).first();
         if (a == null){
             Comarca nc = Comarca.find("byNcomarca", comarca).first();
-            //renderXml(nc);
             new Agricultor(nom,cognom,edat,usuari,contrasenya,nc).save();
             session.put("usuari", usuari);
             session.put("nom", nom);
@@ -74,6 +73,7 @@ public class Application extends Controller {
             session.put("cognom", a.cognom);
             session.put("edat", a.edat);
             session.put("comarca", a.ncomarca.ncomarca);
+            renderArgs.put("c", a.ncomarca.ncomarca);
             renderTemplate("/Application/Principal.html");
         }
     }
@@ -84,6 +84,8 @@ public class Application extends Controller {
     }
 
     public void Convidat(){
+        List<Comarca> c = Comarca.findAll();
+        renderArgs.put("comarques", c);
         renderTemplate("Application/Inici.html");
     }
 
@@ -139,7 +141,7 @@ public class Application extends Controller {
 
             if (ocupacioActual + ncamps > totalCamps) {
                 // Si la ocupación total después de agregar los nuevos campos excede el total de campos disponibles
-                renderJSON("{\"message\": \"Error: No es pot ocupar més camps dels disponibles (" + totalCamps + ") en la comarca " + ncomarca + "\"}");
+                renderText("Error: No es pot ocupar més camps dels disponibles (" + totalCamps + ") en la comarca " + ncomarca);
                 return;
             }
 
@@ -147,12 +149,12 @@ public class Application extends Controller {
             if (agricultor != null) {
                 agricultor.ncamps = ncamps;
                 agricultor.save();
-                renderJSON("{\"message\": \"S'han ocupat " + ncamps + " camps a la comarca " + ncomarca + "\"}");
+                renderText("S'han ocupat " + ncamps + " camps a la comarca " + ncomarca );
             } else {
-                renderJSON("{\"message\": \"Agricultor no trobat a la comarca\"}");
+                renderText("Agricultor no trobat a la comarca");
             }
         } else {
-            renderJSON("{\"message\": \"Comarca no trobada\"}");
+            renderText("Comarca no trobada");
         }
     }
 
@@ -161,14 +163,8 @@ public class Application extends Controller {
         if (comarca != null) {
             long numAgricultors = Agricultor.count("byNcomarca", comarca);
             long numCamps = comarca.numerocamps;
-            //long ocupacioCamps = calcularOcupacioCamps(comarca);
-
-            System.out.println("Comarca: " + ncomarca);
-            System.out.println("Num Agricultors: " + numAgricultors);
-            System.out.println("Num Camps: " + numCamps);
-            //System.out.println("Ocupacio Camps: " + ocupacioCamps);
-
-            renderJSON(new ComarcaDetails(ncomarca, numAgricultors, numCamps));
+            long ocupacioCamps = calcularOcupacioCamps(comarca);
+            renderJSON(new ComarcaDetails(ncomarca, numAgricultors, numCamps, ocupacioCamps));
         } else {
             notFound("Comarca not found");
         }
@@ -180,17 +176,20 @@ public class Application extends Controller {
         public long numCamps;
         public long ocupacioCamps;
 
-        public ComarcaDetails(String ncomarca, long numAgricultors, long numCamps) {
+        public ComarcaDetails(String ncomarca, long numAgricultors, long numCamps, long ocupacioCamps) {
             this.ncomarca = ncomarca;
             this.numAgricultors = numAgricultors;
             this.numCamps = numCamps;
-            //this.ocupacioCamps = ocupacioCamps;
+            this.ocupacioCamps = ocupacioCamps;
         }
     }
 
     public static long calcularOcupacioCamps(Comarca comarca) {
-        Long ocupacioCamps = Agricultor.find("select sum(ncamps) from Agricultor where ncomarca = ?", comarca).first();
-        System.out.println("Ocupacio Camps calculat: " + ocupacioCamps); // Agrega un mensaje de depuración
+        List<Agricultor> agricultors = Agricultor.find("byNcomarca", comarca).fetch();
+        Long ocupacioCamps = 0L;
+        for(Agricultor a: agricultors) {
+            ocupacioCamps = ocupacioCamps + a.ncamps;
+        }
         return ocupacioCamps != null ? ocupacioCamps : 0;
     }
 

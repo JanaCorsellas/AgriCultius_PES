@@ -21,11 +21,6 @@ public class Agricultor extends Model{
     public Comarca ncomarca;
 
 
-    //un agricultor tindrà una llista de camps
-    @OneToMany (mappedBy="nom")
-    public List<Camp> llistacamp = new ArrayList<Camp>();
-
-
     //per identificar un agricultor tindrem el seu nom, cognom i comarca on treballa
     public Agricultor (String nom, String cognom, int edat, String usuari, String contrasenya, Comarca ncomarca){
         this.nom = nom;

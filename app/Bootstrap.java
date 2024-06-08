@@ -1,3 +1,4 @@
+import play.db.jpa.JPABase;
 import play.test.*;
 import play.jobs.*;
 import models.*;
@@ -8,7 +9,7 @@ public class Bootstrap extends Job {
     public void doJob() {
         // Load default data if the database is empty
         // Cargar datos de prueba si la base de datos está vacía
-        if(Comarca.count() == 0) {
+        if(Comarca.count() == 0 && Agricultor.count() == 0) {
             new Comarca("Alt Camp", 3580).save();
             new Comarca("Alt Empordà", 28206).save();
             new Comarca("Alt Penedès", 1806).save();
@@ -25,10 +26,12 @@ public class Bootstrap extends Job {
             new Comarca("Barcelonès", 31).save();
             new Comarca("Berguedà", 12866).save();
             new Comarca("Cerdanya", 3528).save();
-            new Comarca("La Conca de Barberà", 16713).save();
+            Comarca c1 = new Comarca("La Conca de Barberà", 16713);
+            c1.save();
             new Comarca("Garraf", 381).save();
             new Comarca("Garrigues", 8963).save();
-            new Comarca("Garrotxa", 7325).save();
+            Comarca c2 = new Comarca("Garrotxa", 7325);
+            c2.save();
             new Comarca("Gironès", 12282).save();
             new Comarca("Lluçanès", 0).save();
             new Comarca("Maresme", 2393).save();
@@ -52,6 +55,8 @@ public class Bootstrap extends Job {
             new Comarca("Urgell", 31229).save();
             new Comarca("Vallès Occidental", 4323).save();
             new Comarca("Vallès Oriental", 8118).save();
+            new Agricultor("Jana", "Corsellas", 21, "jcorse", "11", c1).save();
+            new Agricultor("Ivan", "Garcia", 21, "ivanga2003", "22", c2).save();
         }
     }
 

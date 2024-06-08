@@ -88,7 +88,7 @@ font-weight: bold; /* Utiliza la misma negrita que otros elementos */
       <p style="font-size: 16px;"><strong>Nom: </strong><span id="nom">${session.get("nom")}</span></p>
       <p style="font-size: 16px;"><strong>Cognom: </strong><span id="cognom">${session.get("cognom")}</span></p>
       <p style="font-size: 16px;"><strong>Edat: </strong><span id="edat">${session.get("edat")}</span></p>
-      <p style="font-size: 16px;"><strong>Comarca: </strong><span id="comarca">${session.get("comarca")}</span></p>
+      <p style="font-size: 16px;"><strong>Comarca: </strong><span name="ncomarca" id="comarca">${session.get("comarca")}</span></p>
     </div>
     <form action="@{Application.editProfile()}" method="get">
       <button type="submit" style="font-size: 20px; margin: 10px;">Editar Perfil</button>
@@ -102,15 +102,18 @@ font-weight: bold; /* Utiliza la misma negrita que otros elementos */
     <button type="submit" class="btn" style="position: absolute; font-size: 30px; margin: 50px;">Consultar comarques</button>
   </form>
 
-  <div style="position: right; margin: 150px;">
-    <label for="ncamps" style="font-size: 30px;">Indiqui quants camps tens en aquesta comarca</label>
-    <br>
-    <label for="ncamps" style="font-size: 20px;">(Recorda actualitzar el número cada cop que compris o venguis un camp)</label>
-    <br>
-    <br>
-    <input type="number" id="ncamps" name="ncamps" min="0">
-    <button type="button" onclick="ocuparCamps()">Ocupar camps</button>
-  </div>
+  <form action="@{Application.ocuparCamps()}" method="post">
+    <div style="position: right; margin: 150px;">
+      <label for="ncamps" style="font-size: 30px;">Indiqui quants camps tens en aquesta comarca</label>
+      <br>
+      <label for="ncamps" style="font-size: 20px;">(Recorda actualitzar el número cada cop que compris o venguis un camp)</label>
+      <br>
+      <br>
+      <input type="text" id="n" name="ncomarca" value="${session.get("comarca")}">
+      <input type="number" id="ncamps" name="ncamps" min="0">
+      <button type="submit">Ocupar camps</button>
+    </div>
+  </form>
 </div>
 <script>
   function ocuparCamps() {

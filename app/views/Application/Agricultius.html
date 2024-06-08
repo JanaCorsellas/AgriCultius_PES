@@ -41,6 +41,32 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .modal {
+          display: none; /* Ocultar el modal por defecto */
+          position: fixed; /* Posición fija */
+          z-index: 1; /* Ubicar el modal encima de todo */
+          left: 0;
+          top: 0;
+          width: 100%; /* Ancho completo */
+          height: 100%; /* Altura completa */
+          overflow: auto; /* Hacer el modal desplazable si es necesario */
+          background-color: rgba(0,0,0,0.4); /* Fondo oscuro */
+        }
+        .modal-content {
+          background-image: url('/public/images/groc.avif');
+          background-size: cover;
+          max-width: 600px;
+          margin: 11px auto 0;
+          border: 1px solid rgba(0, 0, 0, 0.5);
+          border-radius: 10px;
+          padding: 20px;
+          font-family: 'Calibri', serif;
+        }
+        .modal-content p {
+          font-size: 29px;
+          font-family: 'Calibri';
+          line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -48,8 +74,39 @@
     <a href="@{Registre()}" class="button" style="float: right;" >Registrar-se</a>
     <a href="@{LoginFormulari()}" class="button" style="float: right;">Login</a>
     <a href="@{Convidat()}" class="button" style="float: right;">Convidat</a>
+    <a href="#about" id="info_button" class="button" style="float: left;">INFO</a>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>En aquesta pàgina web podràs trobar informació dels camps de conreu de totes les comarques de Catalunya i la seva ocupació.</p>
+            <p>Si ets agricultor i tens terres, no dubtis en registrar-te i indicar el número de camps que tens.</p>
+            <p>També pots entrar com a convidat si t'interessa el tema i vols veure com està aquest sector primari tant important!</p>
+            <p>Qualsevol dubte ens pots contactar a: agricultius@gmail.com</p>
+        </div>
+    </div>
     <h1> BENVINGUT A AGRICULTIUS </h1>
   <!--<img src="https://www.randstad.es/wp-content/uploads/2016/08/innovar-y-modernizar-la-agricultura-880.jpg" alt="Camp" width="650" height="333">-->
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    // Mostrar modal principal cuando se hace clic en HISTORIA
+    $("#info_button").click(function() {
+        $("#myModal").show();
+    });
+
+    // Cerrar modal principal cuando se hace clic en la cruz
+    $(".close").click(function() {
+        $("#myModal").hide();
+    });
+
+    // Cerrar modal principal cuando se hace clic fuera de él
+    $(window).click(function(event) {
+        if (event.target === $("#myModal")[0]) {
+            $("#myModal").hide();
+        }
+    });
+    });
+</script>
 </html>
