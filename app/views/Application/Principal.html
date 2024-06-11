@@ -96,6 +96,10 @@ font-weight: bold; /* Utiliza la misma negrita que otros elementos */
     <form action="@{Application.logout}" method="post">
       <button type="submit" style="font-size: 20px; margin: 10px;">Tancar sessió</button>
     </form>
+    <br><br>
+    <form action="@{Application.eliminarAgricultor()}" method="post">
+      <button type="submit" onclick="return confirm('Estàs segur que vols eliminar el teu compte? Aquesta acció no es pot desfer.')">Eliminar compte</button>
+    </form>
   </div>
 
   <form action="@{Application.consultarComarques()}" method="get">

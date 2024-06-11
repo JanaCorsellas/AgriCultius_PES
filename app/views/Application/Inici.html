@@ -59,17 +59,6 @@
 <div class="container">
     <h1>CONREUS PER COMARQUES</h1>
     <img src=https://blocs.xtec.cat/laiatimoneda/files/2008/11/cmapacat.gif alt="Camp" width="500" height="490">
-    <!--<form action="@{Application.consultarComarques()}">
-        <label for="comarca">Escull una comarca:</label>
-        <select id="comarca" name="comarca">
-            #{list items:comarques, as:'comarca'}
-                <option value="${comarca.ncomarca}">${comarca.ncomarca}</option>
-            #{/list}
-        </select>
-        <br><br>
-        <input type="submit" value="Submit">
-        <button id="comarcabutton" type="button" class="button" onclick="actualizarComarca()">Acceptar</button>
-    </form>-->
     <br>
     <br>
     <label for="comarca">Escull una comarca:</label>
@@ -80,10 +69,6 @@
     </select>
     <br><br>
     <button onclick="actualizarComarca()">Mostrar</button>
-    <!--<p>Carrega dades de la comarca
-        <input type="checkbox" onclick="actualizarComarca()" id="checkcomarca">
-    </p>-->
-    <!--<button id="comarcabutton" type="button" class="button" onclick="actualizarComarca()">Acceptar</button>-->
 </div>
 </div>
 <table>

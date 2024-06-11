@@ -10,6 +10,7 @@ GET     /editProfile        Application.editProfile
 POST    /updateProfile      Application.updateProfile
 GET     /getComarcaDetails  Application.getComarcaDetails
 POST    /ocuparCamps    Application.ocuparCamps
+POST    /eliminarAgricultor    Application.eliminarAgricultor
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

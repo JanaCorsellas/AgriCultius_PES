@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="323669a4-8f8b-4347-8d70-aea486b51f77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/INFO.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/groc.avif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AgricultiusAndroid" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../COPYING" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../README.textile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../documentation/api/allclasses-frame.html" afterDir="false" />
@@ -3770,27 +3769,15 @@
       <change afterPath="$PROJECT_DIR$/../test1/tmp/classes/helpers/LangMenuHelper$LangMenu.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../test1/tmp/classes/helpers/LangMenuHelper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgriCultius.iws" beforeDir="false" afterPath="$PROJECT_DIR$/AgriCultius.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/Bootstrap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Agricultor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Agricultor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Camp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Comarca.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Comarca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/Application/Agricultius.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Agricultius.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/Application/Inici.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Inici.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/Application/Principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Principal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/Bootstrap" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/Bootstrap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Agricultius.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Agricultius.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Inici.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Inici.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Principal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application$ComarcaDetails" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application$ComarcaDetails" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Agricultor" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Agricultor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Comarca" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/models.Comarca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/Bootstrap.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/Bootstrap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/controllers/Application$ComarcaDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/controllers/Application$ComarcaDetails.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/controllers/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/controllers/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/models/Agricultor.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/models/Agricultor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/classes/models/Comarca.class" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/classes/models/Comarca.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

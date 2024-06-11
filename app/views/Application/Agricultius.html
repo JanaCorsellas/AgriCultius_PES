@@ -85,7 +85,12 @@
         </div>
     </div>
     <h1> BENVINGUT A AGRICULTIUS </h1>
-  <!--<img src="https://www.randstad.es/wp-content/uploads/2016/08/innovar-y-modernizar-la-agricultura-880.jpg" alt="Camp" width="650" height="333">-->
+    #{if flash.success}
+        <div class="flash success">${flash.success}</div>
+    #{/if}
+    #{if flash.error}
+        <div class="flash error">${flash.error}</div>
+    #{/if}
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
