@@ -66,20 +66,30 @@ public class Application extends Controller {
     //MÈTODES
 
     //Mètode per donar d'alta/registrar un agricultor
-    public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari, String contrasenya, String comarca){
+    public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari, String contrasenya, String comarca) {
         Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuariAndContrasenya", nom, cognom, edat, usuari, contrasenya).first();
-        if (a == null){
+        boolean isAjax = "XMLHttpRequest".equals(request.headers.get("x-requested-with").value());
+
+        if (a == null) {
             Comarca nc = Comarca.find("byNcomarca", comarca).first();
-            new Agricultor(nom,cognom,edat,usuari,contrasenya,nc).save();
+            new Agricultor(nom, cognom, edat, usuari, contrasenya, nc).save();
             session.put("usuari", usuari);
             session.put("nom", nom);
             session.put("cognom", cognom);
             session.put("edat", edat);
             session.put("comarca", comarca);
-            renderTemplate("Application/Agricultius.html");
-        }
-        else{
-            renderText("Aquest agricultor ja existeix");
+
+            if (isAjax) {
+                renderJSON("{\"status\": \"success\"}");
+            } else {
+                renderTemplate("Application/Agricultius.html");
+            }
+        } else {
+            if (isAjax) {
+                renderJSON("{\"status\": \"error\", \"message\": \"Aquest agricultor ja existeix\"}");
+            } else {
+                renderText("Aquest agricultor ja existeix");
+            }
         }
     }
 
@@ -105,19 +115,27 @@ public class Application extends Controller {
     }
 
     //Mètode per iniciar sessió
-    public static void Login (String usuari, String contrasenya){
+    public static void Login(String usuari, String contrasenya) {
         Agricultor a = Agricultor.find("byUsuariAndContrasenya", usuari, contrasenya).first();
-        if (a == null){
-            renderText ("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
-        }
-        else{
+        boolean isAjax = "XMLHttpRequest".equals(request.headers.get("x-requested-with").value());
+        if (a == null) {
+            if (isAjax) {
+                renderJSON("{\"status\": \"error\", \"message\": \"Aquest agricultor no existeix\"}");
+            } else {
+                renderText("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
+            }
+        } else {
             session.put("usuari", usuari);
             session.put("nom", a.nom); // Asegúrate de tener los campos nom y cognom en la clase Agricultor
             session.put("cognom", a.cognom);
             session.put("edat", a.edat);
             session.put("comarca", a.ncomarca.ncomarca);
             renderArgs.put("c", a.ncomarca.ncomarca);
-            renderTemplate("/Application/Principal.html");
+            if (isAjax) {
+                renderJSON("{\"status\": \"success\"}");
+            } else {
+                renderTemplate("/Application/Principal.html");
+            }
         }
     }
 

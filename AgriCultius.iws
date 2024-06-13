@@ -3770,12 +3770,6 @@
       <change afterPath="$PROJECT_DIR$/../test1/tmp/classes/helpers/LangMenuHelper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgriCultius.iws" beforeDir="false" afterPath="$PROJECT_DIR$/AgriCultius.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Application/Agricultius.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Agricultius.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Application/Inici.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Inici.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Application/Principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Application/Principal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Agricultius.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Agricultius.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Principal.html" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/_app_views_Application_Principal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application$ComarcaDetails" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/bytecode/DEV/controllers.Application$ComarcaDetails" afterDir="false" />
     </list>
