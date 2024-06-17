@@ -11,6 +11,7 @@ POST    /updateProfile      Application.updateProfile
 GET     /getComarcaDetails  Application.getComarcaDetails
 POST    /ocuparCamps    Application.ocuparCamps
 POST    /eliminarAgricultor    Application.eliminarAgricultor
+GET     /Application/getUsuarios     controllers.Application.getUsuarios
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

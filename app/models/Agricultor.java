@@ -10,10 +10,7 @@ public class Agricultor extends Model{
     public int edat;
     public String usuari;
     public String contrasenya;
-    public String especialitat;
     public int ncamps;
-    public double hectarees;
-    public String historiccultius;
 
 
     //varios agricultors poden pertànyer a una comarca

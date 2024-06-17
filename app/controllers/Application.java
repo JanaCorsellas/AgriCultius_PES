@@ -68,7 +68,6 @@ public class Application extends Controller {
     //Mètode per donar d'alta/registrar un agricultor
     public static void RegistrarAgricultor(String nom, String cognom, int edat, String usuari, String contrasenya, String comarca) {
         Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuariAndContrasenya", nom, cognom, edat, usuari, contrasenya).first();
-        boolean isAjax = "XMLHttpRequest".equals(request.headers.get("x-requested-with").value());
 
         if (a == null) {
             Comarca nc = Comarca.find("byNcomarca", comarca).first();
@@ -79,17 +78,28 @@ public class Application extends Controller {
             session.put("edat", edat);
             session.put("comarca", comarca);
 
-            if (isAjax) {
-                renderJSON("{\"status\": \"success\"}");
-            } else {
-                renderTemplate("Application/Agricultius.html");
-            }
+            renderTemplate("Application/Agricultius.html");
         } else {
-            if (isAjax) {
-                renderJSON("{\"status\": \"error\", \"message\": \"Aquest agricultor ja existeix\"}");
-            } else {
-                renderText("Aquest agricultor ja existeix");
-            }
+            renderText("Aquest agricultor ja existeix");
+        }
+    }
+
+    //Mètode per donar d'alta/registrar un agricultor en Android
+    public static void RegistrarAgricultorAndroid(String nom, String cognom, int edat, String usuari, String contrasenya, String comarca) {
+        Agricultor a = Agricultor.find("byNomAndCognomAndEdatAndUsuariAndContrasenya", nom, cognom, edat, usuari, contrasenya).first();
+
+        if (a == null) {
+            Comarca nc = Comarca.find("byNcomarca", comarca).first();
+            new Agricultor(nom, cognom, edat, usuari, contrasenya, nc).save();
+            session.put("usuari", usuari);
+            session.put("nom", nom);
+            session.put("cognom", cognom);
+            session.put("edat", edat);
+            session.put("comarca", comarca);
+
+            renderJSON("{\"status\": \"success\"}");
+        } else {
+            renderJSON("{\"status\": \"error\", \"message\": \"Aquest agricultor ja existeix\"}");
         }
     }
 
@@ -117,13 +127,8 @@ public class Application extends Controller {
     //Mètode per iniciar sessió
     public static void Login(String usuari, String contrasenya) {
         Agricultor a = Agricultor.find("byUsuariAndContrasenya", usuari, contrasenya).first();
-        boolean isAjax = "XMLHttpRequest".equals(request.headers.get("x-requested-with").value());
         if (a == null) {
-            if (isAjax) {
-                renderJSON("{\"status\": \"error\", \"message\": \"Aquest agricultor no existeix\"}");
-            } else {
-                renderText("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
-            }
+            renderText("Agricultor perdut pel camp, cal que trobis el nord (Registra't!)");
         } else {
             session.put("usuari", usuari);
             session.put("nom", a.nom); // Asegúrate de tener los campos nom y cognom en la clase Agricultor
@@ -131,11 +136,25 @@ public class Application extends Controller {
             session.put("edat", a.edat);
             session.put("comarca", a.ncomarca.ncomarca);
             renderArgs.put("c", a.ncomarca.ncomarca);
-            if (isAjax) {
-                renderJSON("{\"status\": \"success\"}");
-            } else {
-                renderTemplate("/Application/Principal.html");
-            }
+            renderTemplate("/Application/Principal.html");
+        }
+    }
+
+    //Mètode per iniciar sessió en Android
+    public static void LoginAndroid(String usuari, String contrasenya) {
+        Agricultor a = Agricultor.find("byUsuariAndContrasenya", usuari, contrasenya).first();
+
+        if (a == null) {
+            renderJSON("{\"status\": \"error\", \"message\": \"Aquest agricultor no existeix\"}");
+        } else {
+            session.put("usuari", usuari);
+            session.put("nom", a.nom); // Asegúrate de tener los campos nom y cognom en la clase Agricultor
+            session.put("cognom", a.cognom);
+            session.put("edat", a.edat);
+            session.put("comarca", a.ncomarca.ncomarca);
+            renderArgs.put("c", a.ncomarca.ncomarca);
+
+            renderJSON("{\"status\": \"success\"}");
         }
     }
 
@@ -255,7 +274,15 @@ public class Application extends Controller {
         }
     }
 
-
+    //Mètode per obtenir la llista dels usuaris registrats
+    public static void getUsuaris() {
+        List<Agricultor> agricultores = Agricultor.findAll();
+        List<String> nombresUsuarios = new ArrayList<>();
+        for (Agricultor agricultor : agricultores) {
+            nombresUsuarios.add(agricultor.usuari);
+        }
+        renderJSON(nombresUsuarios);
+    }
 
 
     //Mètodes extres, sense ús
