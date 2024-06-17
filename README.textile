@@ -1,1 +1,5 @@
-Aquesta versió funciona el Registre en Android, però no funciona en la web.
+En aquesta versió funciona tot correctament
+- Registre i Login en WEB
+- Registre i Login en ANDROID
+- Tots els mètodes per la WEB
+- Petició GET extra en ANDROID
